@@ -33,3 +33,10 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+# aws
+aws.xml
+
+# intellij
+.DS_Store
+.idea
