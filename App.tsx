@@ -1,34 +1,18 @@
-import { observer } from "mobx-react";
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Provider } from "mobx-react";
+import React, { Component } from 'react';
+import { SafeAreaView } from 'react-native';
+import Home from "./src/components/Home";
+import ProfileStore from './src/stores/ProfileStore';
 
-class App extends React.Component {
-  name: string;
-  constructor(props: { name: string }) {
-    super(props);
-    this.name = props.name;
-  }
-
+export default class App extends Component {
   render() {
     return (
-      <View>
-        <button>Button pending</button>
-        {this.name}
-
-      </View>
-
-    );
-
+      <Provider
+        profileStore={new ProfileStore(10)}>
+        <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Home />
+        </SafeAreaView>
+      </Provider>
+    )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-export default observer(App);
