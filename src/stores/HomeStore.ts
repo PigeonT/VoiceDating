@@ -1,5 +1,5 @@
 import { action, makeObservable, observable } from "mobx";
-class ProfileStore {
+class HomeStore {
   count: number;
 
   constructor(count: number) {
@@ -22,4 +22,4 @@ class ProfileStore {
   }
 }
 
-export default ProfileStore;
+export default HomeStore;

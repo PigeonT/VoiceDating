@@ -22,14 +22,14 @@
 import * as React from 'react';
 import {useWindowDimensions} from 'react-native';
 import {SceneMap, TabView} from 'react-native-tab-view';
-import Home from "./src/components/Home";
-import Home2 from "./src/components/Home2";
 import {Provider} from "mobx-react";
-import ProfileStore from "./src/stores/ProfileStore";
+import HomeStore from "./src/stores/HomeStore";
+import HomeScreen from "./src/screens/HomeScreen";
+import ProfileScreen from "./src/screens/ProfileScreen";
 
 const renderScene = SceneMap({
-    home: Home,
-    profile: Home2,
+    home: HomeScreen,
+    profile: ProfileScreen,
 });
 
 export default function TabViewExample() {
@@ -37,13 +37,13 @@ export default function TabViewExample() {
 
     const [index, setIndex] = React.useState(0);
     const [routes] = React.useState([
-        {key: 'home', title: 'Home'},
-        {key: 'profile', title: 'Profile'},
+        {key: 'home', title: 'HomeScreen'},
+        {key: 'profile', title: 'ProfileScreen'},
     ]);
 
     return (
         <Provider
-            profileStore={new ProfileStore(10)}>
+            homeStore={new HomeStore(10)}>
             <TabView
                 navigationState={{index, routes}}
                 renderScene={renderScene}

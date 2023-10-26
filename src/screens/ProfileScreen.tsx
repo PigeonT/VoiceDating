@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Text} from 'react-native';
 
 
-class Home2 extends Component {
+class ProfileScreen extends Component {
     render() {
         return (
             <>
@@ -12,4 +12,4 @@ class Home2 extends Component {
     }
 }
 
-export default Home2;
+export default ProfileScreen;
