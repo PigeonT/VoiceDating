@@ -6,7 +6,7 @@ class ProfileScreen extends Component {
     render() {
         return (
             <>
-                <Text>Home2 Screen</Text>
+                <Text>Profile Screen</Text>
             </>
         )
     }
