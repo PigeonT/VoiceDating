@@ -1,55 +1,33 @@
-// import {Provider} from "mobx-react";
-// import React, {Component} from 'react';
-// import {SafeAreaView} from 'react-native';
-// import Home from "./src/components/Home";
-// import ProfileStore from './src/stores/ProfileStore';
-//
-// export default class App extends Component {
-//     render() {
-//         return (
-//             <Provider
-//                 profileStore={new ProfileStore(10)}>
-//                 <SafeAreaView style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-//                     <Home/>
-//                 </SafeAreaView>
-//             </Provider>
-//         )
-//     }
-// }
-//
-//
-
 import * as React from 'react';
-import {useWindowDimensions} from 'react-native';
-import {SceneMap, TabView} from 'react-native-tab-view';
+import {Component} from 'react';
 import {Provider} from "mobx-react";
 import HomeStore from "./src/stores/HomeStore";
 import HomeScreen from "./src/screens/HomeScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import {NavigationContainer} from "@react-navigation/native";
+import {SafeAreaProvider} from "react-native-safe-area-context";
 
-const renderScene = SceneMap({
-    home: HomeScreen,
-    profile: ProfileScreen,
-});
+const Tab = createBottomTabNavigator();
 
-export default function TabViewExample() {
-    const layout = useWindowDimensions();
-
-    const [index, setIndex] = React.useState(0);
-    const [routes] = React.useState([
-        {key: 'home', title: 'HomeScreen'},
-        {key: 'profile', title: 'ProfileScreen'},
-    ]);
-
-    return (
-        <Provider
-            homeStore={new HomeStore(10)}>
-            <TabView
-                navigationState={{index, routes}}
-                renderScene={renderScene}
-                onIndexChange={setIndex}
-                initialLayout={{width: layout.width}}
-            />
-        </Provider>
-    );
+class TabViewExample extends Component {
+    render() {
+        return (
+            <SafeAreaProvider>
+                <Provider homeStore={new HomeStore(10)}>
+                    <NavigationContainer>
+                        <Tab.Navigator>
+                            <Tab.Screen name="Home"
+                                        component={HomeScreen}/>
+                            <Tab.Screen name="Profile"
+                                        component={ProfileScreen}/>
+                        </Tab.Navigator>
+                    </NavigationContainer>
+                </Provider>
+            </SafeAreaProvider>
+        );
+    }
 }
+
+
+export default TabViewExample;
