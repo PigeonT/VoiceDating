@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Image, View} from 'react-native';
-import {Text} from '@rneui/base';
+import {View} from 'react-native';
 import globalStyles from "../globals/styles/global-styles";
+import {Avatar, ListItem} from '@rneui/themed';
 
 const logo = {
     uri: 'https://reactnative.dev/img/tiny_logo.png',
@@ -13,10 +13,40 @@ class ProfileScreen extends Component {
     render() {
         return (
             <View style={globalStyles.container}>
-                <Text style={{fontSize: 96}}>Scroll me plz</Text>
-                <Image source={logo}/>
-
-                <Text style={{fontSize: 80}}>React Native</Text>
+                <ListItem bottomDivider>
+                    <Avatar
+                        rounded
+                        source={{uri: "https://randomuser.me/api/portraits/men/36.jpg"}}
+                    />
+                    <ListItem.Content>
+                        <ListItem.Title>John Doe</ListItem.Title>
+                        <ListItem.Subtitle>President</ListItem.Subtitle>
+                    </ListItem.Content>
+                </ListItem>
+                <ListItem bottomDivider>
+                    <Avatar
+                        rounded
+                        icon={{
+                            name: "person-outline",
+                            type: "material",
+                            size: 26,
+                        }}
+                        containerStyle={{backgroundColor: "#c2c2c2"}}
+                    />
+                    <ListItem.Content>
+                        <ListItem.Title>Alba King</ListItem.Title>
+                        <ListItem.Subtitle>Vice President</ListItem.Subtitle>
+                    </ListItem.Content>
+                </ListItem>
+                <ListItem>
+                    <Avatar rounded
+                            title="A"
+                            containerStyle={{backgroundColor: "grey"}}/>
+                    <ListItem.Content>
+                        <ListItem.Title>Adam Eva</ListItem.Title>
+                        <ListItem.Subtitle>Vice Chairman</ListItem.Subtitle>
+                    </ListItem.Content>
+                </ListItem>
             </View>
         )
     }
