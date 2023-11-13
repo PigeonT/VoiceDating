@@ -5,12 +5,16 @@ import {Button, Text} from '@rneui/base';
 import globalStyles from "../globals/styles/global-styles";
 import View = Animated.View;
 
-interface HomeProps {
+type HomeProps = {
     homeStore?: any
 }
 
 
-class Home extends Component<HomeProps> {
+class Home extends Component<HomeProps, any> {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         const {homeStore} = this.props;
         return (
