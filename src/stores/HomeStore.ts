@@ -1,9 +1,10 @@
-import { action, makeObservable, observable } from "mobx";
+import {action, makeObservable, observable} from "mobx";
+
 class HomeStore {
   count: number;
 
-  constructor(count: number) {
-    this.count = count;
+  constructor() {
+    this.count = 10;
     makeObservable(this, {
       count: observable,
       decrement: action,

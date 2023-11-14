@@ -1,34 +1,34 @@
 import {inject, observer} from 'mobx-react';
 import React, {Component} from 'react';
-import {Animated, StyleSheet} from 'react-native';
-import globalStyles from "../globals/styles/global-styles";
+import {Animated} from 'react-native';
 import {Avatar, ListItem} from "@rneui/themed";
+import UserListStore from "../stores/UserListStore";
 import View = Animated.View;
 
 
 type UserListProps = {
-    userListStore?: any
+    userListStore: UserListStore
 }
 
-class UserList extends Component<UserListProps, any> {
-    constructor(props) {
+class UserList extends Component<UserListProps> {
+    constructor(props: UserListProps) {
         super(props);
     }
 
     render() {
         const {userListStore} = this.props;
         return (
-            <View style={globalStyles.container}>
+            <View>
                 {
                     userListStore.users.map((l, i) => (
                         <ListItem key={i} bottomDivider>
                             <Avatar
                                 rounded
-                                source={{uri: "https://randomuser.me/api/portraits/men/36.jpg"}}
+                                source={{uri: l.image}}
                             />
                             <ListItem.Content>
-                                <ListItem.Title>{l.name}</ListItem.Title>
-                                <ListItem.Subtitle>{l.url}</ListItem.Subtitle>
+                                <ListItem.Title>{l.username}</ListItem.Title>
+                                <ListItem.Subtitle>{l.email}</ListItem.Subtitle>
                             </ListItem.Content>
                         </ListItem>
                     ))
@@ -37,18 +37,5 @@ class UserList extends Component<UserListProps, any> {
         )
     }
 }
-
-const styles = StyleSheet.create({
-    ...globalStyles,
-    button: {
-        flex: 1,
-        padding: 10,
-    },
-    text: {
-        flex: 1,
-        margin: 'auto',
-        padding: 10,
-    },
-});
 
 export default inject('userListStore')(observer(UserList))

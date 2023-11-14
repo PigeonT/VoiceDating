@@ -3,15 +3,16 @@ import React, {Component} from 'react';
 import {Animated, StyleSheet} from 'react-native';
 import {Button, Text} from '@rneui/base';
 import globalStyles from "../globals/styles/global-styles";
+import HomeStore from "../stores/HomeStore";
 import View = Animated.View;
 
 type HomeProps = {
-    homeStore?: any
+    homeStore: HomeStore
 }
 
 
-class Home extends Component<HomeProps, any> {
-    constructor(props) {
+class Home extends Component<HomeProps> {
+    constructor(props: HomeProps) {
         super(props);
     }
 
