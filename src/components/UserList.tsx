@@ -1,13 +1,14 @@
 import {inject, observer} from 'mobx-react';
 import React, {Component} from 'react';
-import {Animated} from 'react-native';
+import {ScrollView} from 'react-native';
 import {Avatar, ListItem} from "@rneui/themed";
 import UserListStore from "../stores/UserListStore";
-import View = Animated.View;
+import {User} from "../models/profiles/User";
 
 
 type UserListProps = {
-    userListStore: UserListStore
+    userListStore: UserListStore;
+    stack: any;
 }
 
 class UserList extends Component<UserListProps> {
@@ -16,12 +17,14 @@ class UserList extends Component<UserListProps> {
     }
 
     render() {
-        const {userListStore} = this.props;
+        const {userListStore, stack} = this.props;
         return (
-            <View>
+            <ScrollView>
                 {
                     userListStore.users.map((l, i) => (
-                        <ListItem key={i} bottomDivider>
+                        <ListItem
+                            onPress={() => this.changeToUserMessageScreen(l, stack)}
+                            key={i} bottomDivider>
                             <Avatar
                                 rounded
                                 source={{uri: l.image}}
@@ -33,8 +36,12 @@ class UserList extends Component<UserListProps> {
                         </ListItem>
                     ))
                 }
-            </View>
+            </ScrollView>
         )
+    }
+
+    private changeToUserMessageScreen(l: User, stack: any) {
+        stack.navigation.navigate('MessageScreen');
     }
 }
 

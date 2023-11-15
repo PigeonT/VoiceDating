@@ -1,4 +1,4 @@
-import {makeObservable, observable} from "mobx";
+import {action, makeObservable, observable} from "mobx";
 import {User} from "../models/profiles/User";
 import axios from "axios";
 
@@ -8,11 +8,12 @@ class UserListStore {
     constructor() {
         makeObservable(this, {
             users: observable,
+            init: action,
         })
         this.init();
     }
 
-    private async init() {
+    async init() {
         try {
             this.users = (await axios.get('https://dummyjson.com/users')).data.users;
         } catch (error) {
